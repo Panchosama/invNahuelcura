@@ -12,8 +12,8 @@
 	</tr>
 	{% for i in inventario %}
 		<tr>
-			<td>{{ i.objeto__nombre }}</td>
-			<td>{{ i.cantidad }}</td>
+			<td><a href="{% url 'objeto_detail' pk=i.objeto__id %}">{{ i.objeto__nombre }}</a></td>
+			<td>{{ i.total }}</td>
 		</tr>
 	{% endfor %}
 

@@ -32,5 +32,10 @@ def asignacion_list(request):
 
 
 def inventario(request):
-	inventario = Asignacion.objects.values('objeto__nombre').annotate(cantidad=Sum('cantidad'))
+	inventario = Asignacion.objects.values('objeto__nombre','objeto__id').annotate(total=Sum('cantidad')).order_by('objeto__nombre')
 	return render(request, 'inventario.html', {'inventario':inventario})
+
+def objeto_detail(request, pk):
+	objeto = get_object_or_404(Objeto, pk=pk)
+	detalle=Asignacion.objects.filter(objeto=pk).order_by('sala__uso')
+	return render(request, 'objeto_detail.html',{'objeto':objeto,'detalle':detalle})

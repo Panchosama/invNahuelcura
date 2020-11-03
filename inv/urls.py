@@ -13,7 +13,7 @@ Including another URLconf
 Function views
 
 """
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 
 urlpatterns = [
@@ -22,5 +22,6 @@ urlpatterns = [
 	path('inventario/asignar', views.AsignacionNew.as_view(), name='asignacion_new'),
 	path('inventario/asignar/list', views.asignacion_list, name='asignacion_list'),
 	path('inventario/listado', views.inventario, name='inventario'),
+	re_path(r'^inventario/objeto/(?P<pk>[0-9]+)/$', views.objeto_detail, name='objeto_detail'),
 	path('chaining/', include("smart_selects.urls")),
 ]
