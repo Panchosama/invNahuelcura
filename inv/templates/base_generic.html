@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Inventario</title>{% endblock %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+</head>
+
+<body>
+  	<div class="container-fluid">
+  		<div class="row">
+  			<div class='col-md-10 col-md-offset-1'>
+  	<h1><a href="{% url 'index' %}">Inventario Colegio Nahuelcura</a></h1>
+  	{% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
+  	{% block content %}<!-- default content text (typically empty) -->{% endblock %}
+		</div></div>
+	</div>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+	<script src="{% static 'js/jquery.chained.js' %}"></script>
+	<script>
+
+	
+</script>
+</body>
+</html>

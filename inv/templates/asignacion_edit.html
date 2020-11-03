@@ -1,0 +1,82 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Asignar articulo</h2>
+<div class='col-md-8 col-md-offset-2'>
+	<form method="POST" role='form'>{% csrf_token %}
+		 <div class="row">
+		 <div class="col-md-4">
+		 	<div class="col-md-6">Edificios</div>
+	        <select name="edificio" id="id_edificio" class="form-control form-control-sm">
+	        	<option value="0"> --- </option>
+	        	{% for item in edificios %}
+	        		<option value="{{ item.id }}">{{ item.nombre }}</option>
+	        	{% endfor%}
+	        </select>
+	    </div>
+	
+	    <div class="col-md-4">
+	        <div class="col-md-6">Pisos</div>
+	        <select name="piso" id="id_piso" class="form-control form-control-sm">
+	        	<option value="0"> --- </option>
+	        	{% for item in pisos %}
+	        		<option value="{{ item.id }}" data-chained="{{ item.edificio.id }}">{{ item.nombre }}</option>
+	        	{% endfor%}
+	        </select>
+	    </div>
+	     <div class="col-md-4">
+	     	<div class="col-md-6">Salas</div>
+	        <select name="sala" id="id_sala" class="form-control form-control-sm">
+	        	<option value="0"> --- </option>
+	        	{% for item in salas %}
+	        		<option value="{{ item.id }}" data-chained="{{ item.piso.id }}">{{ item.nombre }} ({{ item.uso }})</option>
+	        	{% endfor%}
+	        </select>
+	    </div>
+	</div>
+	<br />
+	<div class="row">
+	    <div class="col-md-4">
+		 	<div class="col-md-6">Tipo</div>
+	        <select name="tipo" id="id_tipo" class="form-control form-control-sm">
+	        	<option value="0"> --- </option>
+	        	{% for item in tipos %}
+	        		<option value="{{ item.id }}">{{ item.nombre }}</option>
+	        	{% endfor%}
+	        </select>
+	    </div>
+	   	     <div class="col-md-5">
+	     	<div class="col-md-7">Objeto</div>
+	        <select name="objeto" id="id_objeto" class="form-control form-control-sm">
+	        	<option value="0"> --- </option>
+	        	{% for item in objetos %}
+	        		<option value="{{ item.id }}" data-chained="{{ item.tipo.id }}">{{ item.nombre }}</option>
+	        	{% endfor%}
+	        </select>
+	    </div>
+	    <div class="col-md-3">
+	        <div class="col-md-4">{{ form.cantidad.label }}</div>
+	        <input type="number" name="cantidad" class="form-control form-control-sm">
+	    </div>
+	</div>
+	 	<div class="col-md-12">
+	        <div class="col-md-4">{{ form.observaciones.label }}</div>
+	        <textarea name="observaciones" class="form-control form-control-sm"></textarea>
+	    </div>
+<br />
+	<div class="row">
+		<div class="col-md-12">
+			<button type="submit" class="save btn btn-info">Guardar</button>
+		</div>
+	</div>
+	</form>
+</div>
+<script>
+	$(function() {
+		$('#id_piso').chained('#id_edificio');
+		$('#id_sala').chained('#id_piso');
+		$('#id_objeto').chained('#id_tipo');
+	});
+</script>
+{% endblock %}
+

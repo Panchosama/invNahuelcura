@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'inventario.urls'
+ROOT_URLCONF = 'nahuelcura.urls'
 
 TEMPLATES = [
     {
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'inventario.wsgi.application'
+WSGI_APPLICATION = 'nahuelcura.wsgi.application'
 
 
 # Database

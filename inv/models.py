@@ -102,14 +102,19 @@ class Asignacion(models.Model):
 		sort=True,
 		null=True)
 	cantidad=models.PositiveSmallIntegerField(default=0)
-	observaciones=models.TextField(default="")
+	observaciones=models.TextField(default="", blank=True)
 	fecha=models.DateTimeField(default=timezone.now)
 	
 	class Meta:
 		verbose_name_plural="Asignaciones"
 		
+	def guardar(self):
+		self.fecha=timezone.now()
+		self.save()
+
+
 	def __str__(self):
-		return self.ubicacion
+		return '%s - %s - %i'%(self.sala, self.objeto, self.cantidad)
 	
 	
 	

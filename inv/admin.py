@@ -6,7 +6,7 @@ from .models import Clase, Tipo, Objeto, Ubicacion, Articulo, Asignacion, Edific
 admin.site.register(Objeto)
 admin.site.register(Ubicacion)
 admin.site.register(Articulo)
-admin.site.register(Asignacion)
+#admin.site.register(Asignacion)
 admin.site.register(Edificio)
 admin.site.register(Piso)
 #admin.site.register(Sala)
@@ -31,4 +31,10 @@ class TipoAdmin(admin.ModelAdmin):
 		list_filter = ('piso','uso',)
 		ordering = ('piso',)
 		search_field =('piso',)
-		
+
+@admin.register(Asignacion)
+class ClaseAdmin(admin.ModelAdmin):
+		list_display = ('objeto','sala','edificio','cantidad')
+		list_filter = ('objeto','sala')
+		ordering = ('edificio','sala',)
+		search_field =('objeto','sala',)

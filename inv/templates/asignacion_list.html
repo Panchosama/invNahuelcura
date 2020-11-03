@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="col-md-8 col-md-offset-2">
+<table class="table table-striped table-hover table-condensed ">
+	<legend>Asignaciones ingresadas</legend>
+	<tr>
+		<th>Sala</th>
+		<th>Edificio</th>
+		<th>Objeto</th>
+		<th>Cantidad</th>
+		<th>Observaciones</th>
+	</tr>
+	{% for a in asignaciones %}
+		<tr>
+			<td>{{ a.sala }}</td>
+			<td>{{ a.edificio }}</td>
+			<td>{{ a.objeto }}</td>
+			<td>{{ a.cantidad }}</td>
+			<td>{{ a.observaciones }}</td>
+		</tr>
+	{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}
