@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="col-md-8 col-md-offset-2">
+<table class="table table-stripped table-hover table-condensed ">
+	<legend>Listado de salas</legend>
+	<tr>
+		<th>Uso</th>
+		<th>Sala</th>
+		<th>Edificio</th>
+	</tr>
+	{% for s in salas %}
+		<tr>
+			<td><a href="{% url 'sala_detail' pk=s.id %}">{{ s.uso }}</a></td>
+			<td>{{ s.nombre }}</td>
+			<td>{{ s.piso }}</td>
+		</tr>
+	{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

@@ -4,32 +4,32 @@
 
 <div class="col-md-8 col-md-offset-2">
 
-<h2>{{ objeto.nombre }}</h2>
+<h2>{{ sala.uso }}</h2>
 
 <table class="table table-condensed table-bordered">
 	<tr>
-		<th>Tipo de objeto</th>
-		<td>{{ objeto.tipo.nombre }}</td>
+		<th>Nombre de sala</th>
+		<td>{{ sala.nombre }}</td>
 	</tr>
 	<tr>
-		<th>Clase de objeto</th>
-		<td>{{ objeto.tipo.clase.nombre }}</td>
+		<th>Ubicación</th>
+		<td>{{ sala.piso.nombre }} {{ sala.piso.edificio.nombre }}</td>
 	</tr>
 </table>
 
 <div class='col-md-12'>
 <table class="table table-striped table-hover table-condensed ">
-	<legend>Distribución</legend>
+	<legend>Inventario</legend>
 	<tr>
-		<th>Sala</th>
+		<th>Tipo</th>
+		<th>Objeto</th>
 		<th>Cantidad</th>
-		<th>Observaciones</th>
 	</tr>
 	{% for d in detalle %}
 		<tr>
-			<td><a href="{% url 'sala_detail' pk=d.sala.id %}">{{ d.sala.uso }}</a></td>
+			<td>{{ d.tipo }}</td>
+			<td>{{ d.objeto }}</td>
 			<td>{{ d.cantidad }}</td>
-			<td>{{ d.observaciones }}</td>
 		</tr>
 	{% endfor %}
 

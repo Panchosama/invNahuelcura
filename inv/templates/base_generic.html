@@ -12,8 +12,33 @@
   	<div class="container-fluid">
   		<div class="row">
   			<div class='col-md-10 col-md-offset-1'>
-  	<h1><a href="{% url 'index' %}">Inventario Colegio Nahuelcura</a></h1>
-  	{% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
+  	{% block sidebar %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <span>Inventario colegio Nahuelcura</span>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav">
+			<li><a href="{% url 'asignacion_new' %}">Registrar articulo</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ver <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="{% url 'asignacion_list' %}">Ver asignaciones</a></li>
+					<li><a href="{% url 'inventario' %}">Ver inventario</a></li>
+					<li><a href="{% url 'salas_list' %}">Ver salas</a></li>
+				</ul>
+			</li>
+		</ul>
+    </div>
+  </div>
+</nav>
+
+  	
+
+	{% endblock %}
   	{% block content %}<!-- default content text (typically empty) -->{% endblock %}
 		</div></div>
 	</div>

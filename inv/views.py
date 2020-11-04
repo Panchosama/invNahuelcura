@@ -39,3 +39,12 @@ def objeto_detail(request, pk):
 	objeto = get_object_or_404(Objeto, pk=pk)
 	detalle=Asignacion.objects.filter(objeto=pk).order_by('sala__uso')
 	return render(request, 'objeto_detail.html',{'objeto':objeto,'detalle':detalle})
+
+def sala_list(request):
+	salas=Sala.objects.all().order_by('uso')
+	return render(request, 'salas_list.html', {'salas':salas})
+
+def sala_detail(request, pk):
+	sala = get_object_or_404(Sala, pk=pk)
+	detalle=Asignacion.objects.filter(sala=pk).order_by('tipo')
+	return render(request, 'sala_detail.html',{'sala':sala,'detalle':detalle})
