@@ -27,3 +27,8 @@ urlpatterns = [
 	re_path(r'^sala/(?P<pk>[0-9]+)/$', views.sala_detail, name='sala_detail'),
 	path('chaining/', include("smart_selects.urls")),
 ]
+
+#Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]

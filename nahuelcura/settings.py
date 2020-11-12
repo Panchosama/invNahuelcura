@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'inv.apps.InvConfig',
 	'smart_selects',
+    'fontawesome_5',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,6 @@ USE_DJANGO_JQUERY = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL ='/'

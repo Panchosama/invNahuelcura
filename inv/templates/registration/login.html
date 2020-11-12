@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="col-md-8 col-md-offset-2">
+{% if form.errors %}
+<p>Su nombre de usuario y contraseña no coinciden. Inténtelo nuevamente.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Su cuenta no tiene acceso a esta página. Para continuar,
+    ingrese con una cuenta que sí tenga acceso.</p>
+    {% else %}
+    <p>Por favor ingrese para ver esta página.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}" class="form-horizontal">
+{% csrf_token %}
+
+<div class="form-group">
+  <div class="col-md-3">{{ form.username.label_tag }}</div>
+  <div class="col-md-9">{{ form.username }}</div>
+</div>
+<div class="form-group">
+  <div class="col-md-3">{{ form.password.label_tag }}</div>
+  <div class="col-md-9">{{ form.password }}</div>
+</div>
+
+<div class="form-group">
+  <input type="submit" value="Acceder" class="btn btn-info"/>
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p class="text-right"><a href="{% url 'password_reset' %}">¿Recuperar contraseña?</a></p>
+
+</div>
+
+{% endblock %}

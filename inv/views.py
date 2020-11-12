@@ -5,12 +5,13 @@ from .models import Asignacion, Edificio, Piso, Sala, Tipo, Objeto
 from .forms import AsignacionForm
 from django.views.generic import TemplateView, CreateView
 from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
 	return render(request, 'index.html')
 	
-
-class AsignacionNew(CreateView):
+class AsignacionNew(LoginRequiredMixin, CreateView):
 	template_name='asignacion_edit.html'
 	model=Asignacion
 	fields= ['edificio','piso','sala','tipo','objeto','cantidad','observaciones']
@@ -48,3 +49,4 @@ def sala_detail(request, pk):
 	sala = get_object_or_404(Sala, pk=pk)
 	detalle=Asignacion.objects.filter(sala=pk).order_by('tipo')
 	return render(request, 'sala_detail.html',{'sala':sala,'detalle':detalle})
+

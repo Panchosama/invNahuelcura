@@ -4,7 +4,8 @@
 <h2>Asignar articulo</h2>
 <div class='col-md-8 col-md-offset-2'>
 	<form method="POST" role='form'>{% csrf_token %}
-		 <div class="row">
+	<!-- Fila 1 -->
+	<div class="row">
 		 <div class="col-md-4">
 		 	<div class="col-md-6">Edificios</div>
 	        <select name="edificio" id="id_edificio" class="form-control form-control-sm">
@@ -35,6 +36,7 @@
 	    </div>
 	</div>
 	<br />
+	<!-- Fila 2 -->
 	<div class="row">
 	    <div class="col-md-4">
 		 	<div class="col-md-6">Tipo</div>
@@ -45,28 +47,34 @@
 	        	{% endfor%}
 	        </select>
 	    </div>
-	   	     <div class="col-md-5">
-	     	<div class="col-md-7">Objeto</div>
-	        <select name="objeto" id="id_objeto" class="form-control form-control-sm">
-	        	<option value="0"> --- </option>
-	        	{% for item in objetos %}
-	        		<option value="{{ item.id }}" data-chained="{{ item.tipo.id }}">{{ item.nombre }}</option>
-	        	{% endfor%}
-	        </select>
-	    </div>
-	    <div class="col-md-3">
-	        <div class="col-md-4">{{ form.cantidad.label }}</div>
-	        <input type="number" name="cantidad" class="form-control form-control-sm">
-	    </div>
+	   	    <div class="col-md-5">
+		     	<div class="col-md-7">Objeto</div>
+		        <select name="objeto" id="id_objeto" class="form-control form-control-sm">
+		        	<option value="0"> --- </option>
+		        	{% for item in objetos %}
+		        		<option value="{{ item.id }}" data-chained="{{ item.tipo.id }}">{{ item.nombre }}</option>
+		        	{% endfor%}
+		        </select>
+		    	</div>
+		    <div class="col-md-3">
+		        <div class="col-md-4">{{ form.cantidad.label }}</div>
+		        <input type="number" name="cantidad" class="form-control form-control-sm">
+		    </div>
 	</div>
+	<br />
+	<!-- Fila 3 -->
+	<div class="row">
 	 	<div class="col-md-12">
 	        <div class="col-md-4">{{ form.observaciones.label }}</div>
 	        <textarea name="observaciones" class="form-control form-control-sm"></textarea>
 	    </div>
-<br />
+	</div>
+		<br />
+	<!-- Fila 4 -->
 	<div class="row">
 		<div class="col-md-12">
-			<button type="submit" class="save btn btn-info">Guardar</button>
+
+				<button type="submit" class=" form-control save btn btn-info">Guardar</button>
 		</div>
 	</div>
 	</form>

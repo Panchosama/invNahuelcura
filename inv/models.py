@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from smart_selects.db_fields import ChainedForeignKey
+from  django.contrib.auth.models import User
 
 #Clases definiendo los objetos inventariados
 class Clase(models.Model):
@@ -104,6 +105,7 @@ class Asignacion(models.Model):
 	cantidad=models.PositiveSmallIntegerField(default=0)
 	observaciones=models.TextField(default="", blank=True)
 	fecha=models.DateTimeField(default=timezone.now)
+	usuario=models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 	
 	class Meta:
 		verbose_name_plural="Asignaciones"
@@ -116,5 +118,24 @@ class Asignacion(models.Model):
 	def __str__(self):
 		return '%s - %s - %i'%(self.sala, self.objeto, self.cantidad)
 	
+
+class Movimiento(models.Model):
+	tipo=models.ForeignKey(Tipo, on_delete=models.PROTECT, null=True)
+	objeto=models.ForeignKey(Objeto, on_delete=models.PROTECT, null=True)
+	cantidad=models.PositiveSmallIntegerField(default=0)
+	origen=models.ForeignKey(Sala, related_name='origen', on_delete=models.PROTECT, null=True)
+	destino=models.ForeignKey(Sala, related_name='destino', on_delete=models.PROTECT, null=True)
+	usuario=models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+	fecha=models.DateTimeField(default=timezone.now)
+
+	def guardar(self):
+		self.fecha=timezone.now()
+		self.save()
+
+
+
+
 	
-	
+#class Movimiento(models.Model):
+#	objeto=Models.ForeignKey(Objeto, on_delete=models.PROTECT, null=True)
+

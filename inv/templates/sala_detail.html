@@ -18,23 +18,27 @@
 </table>
 
 <div class='col-md-12'>
-<table class="table table-striped table-hover table-condensed ">
-	<legend>Inventario</legend>
-	<tr>
-		<th>Tipo</th>
-		<th>Objeto</th>
-		<th>Cantidad</th>
-	</tr>
-	{% for d in detalle %}
+{% if detalle %}
+	<table class="table table-striped table-hover table-condensed ">
+		<legend>Inventario</legend>
 		<tr>
-			<td>{{ d.tipo }}</td>
-			<td>{{ d.objeto }}</td>
-			<td>{{ d.cantidad }}</td>
+			<th>Tipo</th>
+			<th>Objeto</th>
+			<th>Cantidad</th>
 		</tr>
-	{% endfor %}
-
-</table>
+		{% for d in detalle %}
+			<tr>
+				<td>{{ d.tipo }}</td>
+				<td>{{ d.objeto }}</td>
+				<td>{{ d.cantidad }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% else %}
+	<span>No hay registros</span>
+{% endif %}
 </div>
+
 </div>
 
 {% endblock %}
